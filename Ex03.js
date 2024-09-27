@@ -1,13 +1,12 @@
 const fs = require('fs');
 
-fs.readFile('faturamento.json', 'utf8', (err, data) => {
+fs.readFile('dados.json', 'utf8', (err, data) => {
     if (err) {
         console.error('Erro ao ler o arquivo:', err);
         return;
     }
 
-    const faturamentoData = JSON.parse(data);
-    const faturamentos = faturamentoData.faturamento_diario;
+    const faturamentos = JSON.parse(data);
     const diasComFaturamento = faturamentos.filter(dia => dia.valor > 0);
     const menorFaturamento = Math.min(...diasComFaturamento.map(dia => dia.valor));
     const maiorFaturamento = Math.max(...diasComFaturamento.map(dia => dia.valor));
